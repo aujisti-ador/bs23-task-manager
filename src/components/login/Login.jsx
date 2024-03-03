@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { loginSuccess } from '../../store/slices/authSlice';
+import { loginAsync } from '../../store/slices/authSlice';
 import "./Login.css";
 
 const Login = () => {
@@ -19,10 +19,7 @@ const Login = () => {
         }
 
         if (username && password) {
-
-            dispatch(loginSuccess({ username }));
-            // Store the username in localStorage for persistence
-            localStorage.setItem('username', username);
+            dispatch(loginAsync({ username: username, password: password }))
         }
     };
 

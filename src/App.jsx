@@ -7,15 +7,16 @@ import Login from './components/login/Login';
 
 const App = () => {
   const dispatch = useDispatch();
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const {isAuthenticated, username} = useSelector((state) => state.auth);
 
   useEffect(() => {
     // Check if there is a stored username in localStorage
-    const storedUsername = localStorage.getItem('username');
-    if (storedUsername) {
-      // Dispatch login success action if username is found
-      dispatch(loginSuccess(storedUsername));
-    }
+    // const storedUsername = localStorage.getItem('username');
+    console.log("===>app jsx login", isAuthenticated, username)
+    // if (storedUsername) {
+    //   // Dispatch login success action if username is found
+    //   dispatch(loginSuccess(storedUsername));
+    // }
   }, [dispatch]);
 
   return (
