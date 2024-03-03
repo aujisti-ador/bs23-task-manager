@@ -1,0 +1,6 @@
+.app-container {
+    display: flex;
+    flex: 1;
+    padding: 15px;
+    flex-direction: column;
+}

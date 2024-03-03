@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginSuccess } from './store/slices/authSlice';
 import Dashboard from './components/dashboard/Dashboard';
 import Login from './components/login/Login';
+import PrivateRoutes from './store/PrivateRoutes';
+import CommonRoutes from './store/CommonRoutes';
 
 const App = () => {
   const dispatch = useDispatch();
-  const {isAuthenticated, username} = useSelector((state) => state.auth);
+  const { isAuthenticated, username } = useSelector((state) => state.auth);
 
   useEffect(() => {
     // Check if there is a stored username in localStorage
@@ -22,12 +24,13 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="*" element={<Navigate to="/login" />} />
-        <Route path="/login" element={<Login />} />
-        <Route
-          path="/dashboard"
-          render={() => (isAuthenticated ? <Dashboard /> : <Navigate to="/login" />)}
-        />
+        <Route path="*" element={<Navigate to="/dashboard" />} />
+        <Route element={<PrivateRoutes />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
+        <Route element={<CommonRoutes />}>
+          <Route path="/login" element={<Login />} />
+        </Route>
       </Routes>
     </Router>
   );
