@@ -5,10 +5,11 @@ import { fetchLogin } from '../../api/fetchApi';
 export const loginAsync = createAsyncThunk('auth/loginAsync', async (credentials, { dispatch }) => {
     try {
         const response = await fetchLogin(credentials);
+        dispatch(clearError())
         return response.username;
     } catch (error) {
         // Handle error, dispatch an error action, etc.
-        console.error('Login failed:', error);
+        console.error('Login failed:', error.message);
         throw error;
     }
 });
@@ -19,6 +20,7 @@ const authSlice = createSlice({
         isAuthenticated: false,
         username: null,
         loading: false,
+        error: null,
     },
     reducers: {
         loginSuccess: (state, action) => {
@@ -28,7 +30,11 @@ const authSlice = createSlice({
         logout: (state) => {
             state.isAuthenticated = false;
             state.username = null;
+            state.error = null;
         },
+        clearError: (state) => {
+            state.error = null;
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -40,13 +46,14 @@ const authSlice = createSlice({
                 state.isAuthenticated = true;
                 state.username = action.payload;
             })
-            .addCase(loginAsync.rejected, (state) => {
+            .addCase(loginAsync.rejected, (state, action) => {
                 state.loading = false;
+                state.error = action.error.message;
             });
     },
 
 });
 
-export const { loginSuccess, logout } = authSlice.actions;
+export const { loginSuccess, logout, clearError } = authSlice.actions;
 export const selectAuth = (state) => state.auth;
 export default authSlice.reducer;

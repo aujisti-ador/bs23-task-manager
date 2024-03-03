@@ -5,7 +5,8 @@ const fetchLogin = async (req) => {
         return { success: true, username: LoginData.username };
     }
     else {
-        return { success: false, message: "Invalid credentials" };
+        // return { success: false, message: "Invalid credentials" };
+        throw new Error("Invalid credentials");
     }
 }
 
