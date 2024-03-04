@@ -1,22 +1,19 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { fetchTaskList } from '../../api/fetchApi';
-import { TaskListData } from '../../data/fakeData';
 
+// api/fetchApi.js
 
 export const updateTask = async (updatedTaskList) => {
     try {
         // Assuming the taskList.json file is in the same directory
-        const filePath = '../../data/fakeData.json';
+        const filePath = '../../api/taskList.json';
 
         // Update the task list in the JSON file
         const updatedTaskListJson = JSON.stringify(updatedTaskList, null, 2);
-        await fetch(filePath, {
-            method: 'PUT', // Assuming you are updating the entire file
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: updatedTaskListJson,
-        });
+        // Using the 'fs' module to write to the file (Node.js environment)
+        // const fs = require('fs');
+
+        // fs.writeFileSync(filePath, updatedTaskListJson);
 
         console.log('Task list updated successfully!');
     } catch (error) {
@@ -24,6 +21,25 @@ export const updateTask = async (updatedTaskList) => {
         throw error;
     }
 };
+
+// Define the async thunk for adding a task
+export const addTaskAsync = createAsyncThunk('task/addTaskAsync', async (newTask) => {
+    try {
+        // Fetch the current task list
+        const currentTaskList = await fetchTaskList(); // You need to implement this function
+
+        // Add the new task to the list
+        const updatedTaskList = [...currentTaskList, newTask];
+
+        // Update the local JSON file with the new task list
+        await updateTask(updatedTaskList);
+
+        return updatedTaskList;
+    } catch (error) {
+        console.error('Adding task failed:', error.message);
+        throw error;
+    }
+});
 //  async thunk for the login action
 export const getTaskListAsync = createAsyncThunk('task/getTaskListAsync', async () => {
     try {
@@ -120,15 +136,15 @@ const taskSlice = createSlice({
                 state.loading = false;
                 state.error = action.error.message;
             })
-            .addCase(updateTaskAsync.pending, (state) => {
+            .addCase(addTaskAsync.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(updateTaskAsync.fulfilled, (state, action) => {
+            .addCase(addTaskAsync.fulfilled, (state, action) => {
                 console.log("===> action", action)
                 state.loading = false;
                 state.data = action.payload;
             })
-            .addCase(updateTaskAsync.rejected, (state, action) => {
+            .addCase(addTaskAsync.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })

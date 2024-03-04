@@ -29,6 +29,11 @@
         box-sizing: border-box;
     }
 
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
     button {
         background-color: #4caf50;
         color: #fff;

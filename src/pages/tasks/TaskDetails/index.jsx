@@ -57,6 +57,7 @@ function TaskDetails() {
             <div>
               <label>Title: </label>
               <input
+                required
                 type="text"
                 name="title"
                 value={editedTask.title}
@@ -89,9 +90,10 @@ function TaskDetails() {
               <p><strong>Assigned To:</strong> {taskDetails.assignedTo}</p>
 
               {/* Edit and Delete buttons */}
-              <button onClick={handleEditClick}>Edit</button>
-              <button onClick={handleDeleteClick}>Delete</button>
-              {/* Include the delete button as needed */}
+              <div className='button-container'>
+                <button onClick={handleEditClick}>Edit</button>
+                <button onClick={handleDeleteClick}>Delete</button>
+              </div>
             </div>
           )}
         </div>

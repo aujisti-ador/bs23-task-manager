@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import "./index.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { getMemberListAsync } from '../../../store/slices/memberSlice';
+import { addTaskAsync } from '../../../store/slices/taskSlice'; // Import the action for adding a task
+import "./index.css";
 
 function TaskAdd() {
-
     const { data: memberList, loading, error } = useSelector((state) => state.member);
     const dispatch = useDispatch();
 
@@ -12,7 +12,6 @@ function TaskAdd() {
         dispatch(getMemberListAsync());
     }, [dispatch]);
 
-    // State for form inputs
     const [taskData, setTaskData] = useState({
         title: '',
         description: '',
@@ -27,10 +26,30 @@ function TaskAdd() {
         }));
     };
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        // Check if all fields are filled
+        if (taskData.title && taskData.description && taskData.assignedTo) {
+            // Dispatch an action to add the task
+            dispatch(addTaskAsync(taskData));
+
+            // Reset the form after submission
+            setTaskData({
+                title: '',
+                description: '',
+                assignedTo: '',
+            });
+        } else {
+            // Handle validation error, show a message, etc.
+            console.error('Please fill in all fields.');
+        }
+    };
+
     return (
         <div className='container-add-task'>
             <h2>Add New Task</h2>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label>Title:</label>
                 <input
                     type="text"
