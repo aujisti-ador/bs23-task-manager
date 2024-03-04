@@ -1,4 +1,4 @@
-import { LoginData } from "../data/fakeData";
+import { LoginData, TaskListData } from "../data/fakeData";
 
 const fetchLogin = async (req) => {
     if (JSON.stringify(LoginData) === JSON.stringify(req)) {
@@ -10,4 +10,13 @@ const fetchLogin = async (req) => {
     }
 }
 
-export { fetchLogin }
+const fetchTaskList = async () => {
+    return new Promise((resolve) => {
+        // Simulate an asynchronous API call
+        setTimeout(() => {
+            resolve(TaskListData);
+        }, 1000); // Simulating a delay of 1 second
+    });
+}
+
+export { fetchLogin, fetchTaskList }

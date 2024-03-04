@@ -1,0 +1,41 @@
+.container-tasklist {
+    display: flex;
+    flex: 1;
+    padding: 12px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .body {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px;
+    }
+
+    .scrollable-table {
+        height: 600px;
+        width: 800px;
+        display: flex;
+        overflow-y: scroll;
+        border: 1px solid #ddd;
+        flex-direction: column;
+        display: flex;
+        align-items: center;
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+      
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+}

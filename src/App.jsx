@@ -1,24 +1,31 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { loginSuccess } from './store/slices/authSlice';
-import Dashboard from './components/dashboard/Dashboard';
+import Dashboard from './pages/dashboard/Dashboard';
 import Login from './components/login/Login';
 import PrivateRoutes from './store/PrivateRoutes';
 import CommonRoutes from './store/CommonRoutes';
+import TasksList from './pages/tasks/TasksList';
+import TaskDetails from './pages/tasks/TaskDetails';
 
 const App = () => {
 
   return (
     <Router>
       <Routes>
-        <Route path="*" element={<Navigate to="/dashboard" />} />
         <Route element={<PrivateRoutes />}>
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route
+            path="/dashboard"
+          >
+            {/* Nested routes for tasks */}
+            <Route index element={<Dashboard />} />
+            <Route exact path="tasks" element={<TasksList />} />
+            <Route path="tasks/:taskId" element={<TaskDetails />} />
+          </Route>
         </Route>
         <Route element={<CommonRoutes />}>
           <Route path="/login" element={<Login />} />
         </Route>
+        {/* <Route path="*" element={<Navigate to="/dashboard" />} /> */}
       </Routes>
     </Router>
   );

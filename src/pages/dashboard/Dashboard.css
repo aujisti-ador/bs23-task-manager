@@ -1,0 +1,14 @@
+.container-dashboard {
+    display: flex;
+    flex: 1;
+    padding: 12px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .body{
+        display: flex;
+        justify-content: space-between;
+        padding: 8px;
+    }
+}

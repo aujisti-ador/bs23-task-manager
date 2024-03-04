@@ -11,7 +11,7 @@ const Header = ({ appName, username, onLogout }) => {
       </div>
       <div className='right-section'>
         <Link to="/dashboard">Dashboard</Link>
-        <Link to="/tasks">Tasks</Link>
+        <Link to="/dashboard/tasks">Tasks</Link>
         <Link to="/members">Members</Link>
         <span className='username'>{username}</span>
         <button onClick={onLogout}>Logout</button>

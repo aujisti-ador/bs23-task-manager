@@ -1,0 +1,22 @@
+.container-tile {
+    display: flex;
+    flex: 1;
+    margin: 8px;
+    padding: 15px;
+    border: 2px solid #ff5733;
+    border-radius: 6px;
+    height: 200px;
+    width: 200px;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease; /* Add a smooth transition effect */
+
+    /* Set default background color */
+    background-color: #ffffff;
+}
+
+/* Change color on hover and set cursor pointer */
+.container-tile:hover {
+    background-color: #ffcdcd;
+    cursor: pointer;
+}
