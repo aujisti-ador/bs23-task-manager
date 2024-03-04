@@ -6,6 +6,8 @@ import PrivateRoutes from './store/PrivateRoutes';
 import CommonRoutes from './store/CommonRoutes';
 import TasksList from './pages/tasks/TasksList';
 import TaskDetails from './pages/tasks/TaskDetails';
+import MemberList from './pages/members/MemberList';
+import MemberDetails from './pages/members/MemberDetails';
 
 const App = () => {
 
@@ -20,6 +22,8 @@ const App = () => {
             <Route index element={<Dashboard />} />
             <Route exact path="tasks" element={<TasksList />} />
             <Route path="tasks/:taskId" element={<TaskDetails />} />
+            <Route exact path="members" element={<MemberList />} />
+            <Route path="members/:memberId" element={<MemberDetails />} />
           </Route>
         </Route>
         <Route element={<CommonRoutes />}>
