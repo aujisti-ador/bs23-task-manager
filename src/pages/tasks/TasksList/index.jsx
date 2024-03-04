@@ -85,6 +85,7 @@ function TasksList() {
                 <th>Title</th>
                 <th>Description</th>
                 <th>Assigned to</th>
+                <th>Created At</th>
               </tr>
             </thead>
             <tbody>
@@ -96,6 +97,7 @@ function TasksList() {
                   </td>
                   <td>{task.description}</td>
                   <td>{task.assignedTo}</td>
+                  <td>{task.createdAt}</td>
                 </tr>
               ))}
             </tbody>
