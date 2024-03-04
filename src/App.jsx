@@ -29,7 +29,7 @@ const App = () => {
         <Route element={<CommonRoutes />}>
           <Route path="/login" element={<Login />} />
         </Route>
-        {/* <Route path="*" element={<Navigate to="/dashboard" />} /> */}
+        <Route path="*" element={<Navigate to="/dashboard" />} />
       </Routes>
     </Router>
   );
