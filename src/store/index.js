@@ -1,10 +1,14 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import authReducer from './slices/authSlice';
+import taskReducer from './slices/taskSlice';
+import memberReducer from './slices/memberSlice';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // Import storage for persisting
 
 const rootReducer = combineReducers({
     auth: authReducer,
+    task: taskReducer,
+    member: memberReducer
 });
 
 const persistConfig = {
