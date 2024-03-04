@@ -31,6 +31,7 @@ function MemberList() {
                                 <th>Id</th>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Number of Task</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -39,6 +40,7 @@ function MemberList() {
                                     <td>{member.id}</td>
                                     <td><Link to={`/dashboard/members/${member.id}`}>{member.name}</Link></td>
                                     <td>{member.email}</td>
+                                    <td>{member.taskNumber}</td>
                                 </tr>
                             ))}
                         </tbody>
