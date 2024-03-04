@@ -8,6 +8,7 @@ import TasksList from './pages/tasks/TasksList';
 import TaskDetails from './pages/tasks/TaskDetails';
 import MemberList from './pages/members/MemberList';
 import MemberDetails from './pages/members/MemberDetails';
+import TaskAdd from './pages/tasks/TaskAdd';
 
 const App = () => {
 
@@ -21,6 +22,7 @@ const App = () => {
             {/* Nested routes for tasks */}
             <Route index element={<Dashboard />} />
             <Route exact path="tasks" element={<TasksList />} />
+            <Route exact path="tasks/new" element={<TaskAdd />} />
             <Route path="tasks/:taskId" element={<TaskDetails />} />
             <Route exact path="members" element={<MemberList />} />
             <Route path="members/:memberId" element={<MemberDetails />} />
