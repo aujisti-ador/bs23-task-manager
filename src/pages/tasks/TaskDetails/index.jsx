@@ -23,7 +23,6 @@ function TaskDetails() {
           <p><strong>Title:</strong> {taskDetails.title}</p>
           <p><strong>Description:</strong> {taskDetails.description}</p>
           <p><strong>Assigned To:</strong> {taskDetails.assignedTo}</p>
-          {/* Add more details as needed */}
         </div>
       )}
     </div>
